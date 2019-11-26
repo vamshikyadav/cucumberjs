@@ -15,12 +15,12 @@ pipeline {
     
   stages {
         
-    stage('checkout') {
-        steps{
-            echo "checkout"
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamshikyadav/cucumberjs.git']]])
-        }
-    }
+    //stage('checkout') {
+    //    steps{
+    //        echo "checkout"
+    //        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamshikyadav/cucumberjs.git']]])
+    //    }
+    //}
         
     stage('Install dependencies') {
       steps {
@@ -31,8 +31,8 @@ pipeline {
      
     stage('Test') {
       steps {
-         echo "nps test" 
-         sh 'npm test'
+         echo "nps run" 
+         sh 'npm run'
       }
     }      
   }

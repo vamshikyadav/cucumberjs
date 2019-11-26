@@ -6,13 +6,13 @@
             choice( name: 'featurefile', choices: ['testRemote', 'testSlow'])
         }
 }*/
-def workspace;
-def name;
 
 pipeline {
   agent any
     
   tools {nodejs "node"}
+  def workspace;
+  def name;
     
   stages {
         

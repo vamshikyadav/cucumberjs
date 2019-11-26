@@ -8,20 +8,28 @@ properties{
 }
 
 pipeline {
-    agent any
-   
-    stages {
-        stage('Get Source') {
-            checkout scm
-        }
-        stage('Install dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
- }
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/vamshikyadav/cucumberjs.git'
+      }
+    }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
+  }
+}

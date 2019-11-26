@@ -11,20 +11,16 @@ pipeline {
   agent any
     
   tools {nodejs "node"}
-  def workspace;
-  def name;
+
     
   stages {
         
     stage('checkout') {
       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamshikyadav/cucumberjs.git']]])
-      workspace
     }
         
     stage('Install dependencies') {
-      steps {
-        name = "key-dev"
-        echo "Static Code Analysis ${name}"  
+      steps {        
         sh 'npm install'
       }
     }

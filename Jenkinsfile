@@ -1,11 +1,13 @@
 #!/usr/bin/env groovy
-properties{
+/*properties{
     parameters {
             //string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
             choice( name: 'region', choices: ['key-dev', 'key-qa'])
             choice( name: 'featurefile', choices: ['testRemote', 'testSlow'])
         }
-}
+}*/
+def workspace;
+def name;
 
 pipeline {
   agent any
@@ -14,14 +16,15 @@ pipeline {
     
   stages {
         
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/vamshikyadav/cucumberjs.git'
-      }
+    stage('checkout') {
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamshikyadav/cucumberjs.git']]])
+      workspace
     }
         
     stage('Install dependencies') {
       steps {
+        name = "key-dev"
+        echo "Static Code Analysis ${name}"  
         sh 'npm install'
       }
     }

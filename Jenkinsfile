@@ -25,14 +25,14 @@ pipeline {
     stage('Install dependencies') {
       steps {
         echo "Install dependencies"          
-        sh 'npm install'
+        bat 'npm install'
       }
     }
      
     stage('Test') {
       steps {
          echo "nps run" 
-         sh 'npm run'
+         bat 'npm run'
       }
     }      
   }

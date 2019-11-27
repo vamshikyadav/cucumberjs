@@ -7,6 +7,14 @@ properties([
         ])
 ])
 
+if (params.environment == 'key-dev'){          
+    echo "you selected ${params.environment}"
+}
+if (params.environment == 'key-qa'){
+    echo "you selected ${params.environment}"
+
+}
+
 pipeline {
   agent any
     
@@ -17,13 +25,7 @@ pipeline {
       // have to include the details of the environment
       stage("Environment Setup"){
           steps{
-            if (params.environment == 'key-dev'){          
-            echo "you selected ${params.environment}"
-            }
-            if (params.environment == 'key-qa'){
-              echo "you selected ${params.environment}"
-
-            }
+             echo "Environment selected ${params.environment}" 
           }
         
       }

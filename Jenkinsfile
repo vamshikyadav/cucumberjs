@@ -14,14 +14,6 @@ pipeline {
 
     
   stages {
-        
-    //stage('checkout') {
-    //    steps{
-    //        echo "checkout"
-    //        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vamshikyadav/cucumberjs.git']]])
-    //    }
-    //}
-        
     stage('Install dependencies') {
       steps {
         echo "Install dependencies"          

@@ -7,8 +7,8 @@ properties([
         ])
 ])
 
-node{
-
+pipeline {
+  agent any
     
   tools {nodejs "node"}
 
@@ -16,7 +16,7 @@ node{
   stages {
       // have to include the details of the environment
       stage("Environment Setup"){
-      
+          steps{
             if (params.environment == 'key-dev'){          
             echo "you selected ${params.environment}"
             }
@@ -24,21 +24,21 @@ node{
               echo "you selected ${params.environment}"
 
             }
-
+          }
         
       }
       stage('Install dependencies') {
-          
+          steps {
             echo "Install dependencies in key-dev"          
             bat 'npm install'
-          
+          }
         }
    
       stage('Testing the feature file') {
-        
+        steps {
           echo "running the feature file selected ${params.featurefile}" 
           bat "npm run ${params.featurefile}"
-    
+        }
       }  
   }
 }

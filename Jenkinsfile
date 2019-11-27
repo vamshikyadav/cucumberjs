@@ -7,7 +7,8 @@ properties([
         ])
 ])
 
-  agent any
+node{
+
     
   tools {nodejs "node"}
 
@@ -40,3 +41,4 @@ properties([
     
       }  
   }
+}

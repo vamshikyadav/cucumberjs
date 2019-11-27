@@ -16,14 +16,16 @@ pipeline {
   stages {
       // have to include the details of the environment
       stage("Environment Setup"){
-        if (params.environment == 'key-dev'){          
+        steps{
+          if (params.environment == 'key-dev'){          
           echo "you selected ${params.environment}"
-        }
-        if (params.environment == 'key-qa'){
-          echo "you selected ${params.environment}"
+          }
+          if (params.environment == 'key-qa'){
+            echo "you selected ${params.environment}"
 
+          }
         }
-
+        
       }
       stage('Install dependencies') {
           steps {

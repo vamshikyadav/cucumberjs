@@ -46,6 +46,6 @@ pipeline {
          // bat 'npm run '
         }
       }     
-    
+     }
   }
 }

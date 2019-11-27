@@ -14,7 +14,17 @@ pipeline {
 
     
   stages {
-    if (params.environment == 'key-dev'){
+      // have to include the details of the environment
+      stage("Environment Setup"){
+        if (params.environment == 'key-dev'){          
+          echo "you selected ${params.environment}"
+        }
+        if (params.environment == 'key-qa'){
+          echo "you selected ${params.environment}"
+
+        }
+
+      }
       stage('Install dependencies') {
           steps {
             echo "Install dependencies in key-dev"          
@@ -22,30 +32,11 @@ pipeline {
           }
         }
    
-      stage('Test') {
+      stage('Testing the feature file') {
         steps {
-          echo "run in key-dev" 
-          bat 'npm run'
+          echo "running the feature file selected ${params.featurefile}" 
+          bat "npm run ${params.featurefile}"
         }
-      }      
-
-    }
-
-     if (params.environment == 'key-qa'){
-      stage('Install dependencies') {
-          steps {
-            echo "Install dependencies in key-qa"  
-            echo "environment: ${params.featurefile}"        
-           // bat 'npm install'
-          }
-        }
-   
-      stage('Test') {
-        steps {
-          echo "run in key-qa" 
-         // bat 'npm run '
-        }
-      }     
-     }
+      }  
   }
 }

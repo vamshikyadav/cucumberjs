@@ -1,11 +1,11 @@
 #!/usr/bin/env groovy
-properties{
-    parameters {
+properties([
+    parameters ([
             //string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
             choice( name: 'region', choices: ['key-dev', 'key-qa'])
             choice( name: 'featurefile', choices: ['testRemote', 'testSlow'])
-        }
-}
+        ])
+])
 
 pipeline {
   agent any
